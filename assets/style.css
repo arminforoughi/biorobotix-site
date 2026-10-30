@@ -64,7 +64,7 @@ img,video,iframe{display:block;max-width:100%}
 @media (min-width:860px){.clips{grid-template-columns:minmax(0,.62fr) minmax(0,1fr);align-items:start}}
 .clip{margin:0}
 .clip video{width:100%;background:#111;border:1px solid var(--ink)}
-.clip.tall video{aspect-ratio:9/16;object-fit:cover;max-height:720px}
+.clip.tall video{aspect-ratio:540/672;object-fit:cover}
 .clip.wide video{aspect-ratio:16/9;object-fit:cover}
 .clip figcaption{padding-top:1rem}
 .clip h3{margin:0 0 .5rem;font-size:15px;letter-spacing:.08em;text-transform:uppercase}
