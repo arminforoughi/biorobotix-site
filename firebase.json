@@ -1,0 +1,12 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [".git", ".git/**", ".gitignore", ".DS_Store", "firebase.json", ".firebaserc", "CNAME", "**/.*", "**/node_modules/**"],
+    "cleanUrls": false,
+    "headers": [
+      { "source": "**/*.@(mp4|jpg|png|svg|ico)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
+      { "source": "**/*.@(css)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] }
+    ],
+    "redirects": [{ "source": "/technology", "destination": "/technology.html", "type": 301 }]
+  }
+}
