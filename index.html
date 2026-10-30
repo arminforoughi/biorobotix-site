@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BioRobotix - Accelerating Research Through Automation</title>
+<meta name="description" content="BioRobotix: Advanced robotics solutions to speed up research and automation. Cutting-edge technology for scientific advancement.">
+<meta name="author" content="BioRobotix">
+<meta property="og:title" content="BioRobotix - Accelerating Research Through Automation">
+<meta property="og:description" content="Advanced robotics solutions to speed up research and automation. Cutting-edge technology for scientific advancement.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@biorobotix">
+<meta name="twitter:image" content="assets/og.png">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="alternate icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="assets/style.css?v=2">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><b>BIOROBOTIX</b><span>RESEARCH AUTOMATION</span></a>
+    <nav class="nav">
+      <a href="technology.html">Projects</a>
+      <a href="#research">Research</a>
+      <a href="https://calendly.com/arforoug/30min">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="k">Next generation research tools</p>
+      <h1>Accelerating<br>research<br>through<br>automation</h1>
+      <p class="lead">Advanced robotics solutions designed to revolutionize scientific research. Precision, speed, and reliability engineered for the laboratory of tomorrow.</p>
+      <div class="btns">
+        <a class="btn solid" href="technology.html">Explore technology</a>
+        <a class="btn" href="https://calendly.com/arforoug/30min">Request demo</a>
+      </div>
+      <div class="stats">
+        <div><b>10X</b><span>Faster processing</span></div>
+        <div><b>99.9%</b><span>Precision rate</span></div>
+        <div><b>24/7</b><span>Operation</span></div>
+      </div>
+    </div>
+
+    <figure class="bench">
+      <div class="bench-frame">
+        <iframe src="bench.html?embed=scroll" scrolling="no" title="Animated lab bench: two robot arms take one sample tube from the courier bag to the archive fridge"></iframe>
+      </div>
+      <figcaption><span>Automated sample handling &bull; bench simulation</span><a href="bench.html">Open full simulation &rarr;</a></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="k">Core technology</p>
+    <h2>Precision engineered solutions</h2>
+    <div class="cards">
+      <div class="card"><span class="n">01</span><h3>Automated pipetting</h3><p>Sub-microliter precision liquid handling with contamination-free protocols. Increase throughput while eliminating human error.</p></div>
+      <div class="card"><span class="n">02</span><h3>Sample preparation</h3><p>Standardized sample processing with reproducible results. From cell culture to molecular analysis, automated end-to-end.</p></div>
+      <div class="card"><span class="n">03</span><h3>Data integration</h3><p>Real-time data capture and analysis integration. Seamless workflow from experiment to insight.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec soft" id="research">
+  <div class="wrap">
+    <p class="k">In action</p>
+    <h2>Precision in motion</h2>
+    <div class="clips">
+      <figure class="clip tall">
+        <video src="assets/to-fridge.mp4" poster="assets/to-fridge.jpg" muted loop playsinline preload="none"></video>
+        <figcaption><h3>Liquid handling</h3><p>Seamless transfer of samples from one machine to another with precision and reliability. Automated liquid handling ensures contamination-free protocols and consistent results.</p></figcaption>
+      </figure>
+      <div class="stack">
+        <figure class="clip wide">
+          <video src="assets/accuracy.mp4" poster="assets/accuracy.jpg" muted loop playsinline preload="none"></video>
+          <figcaption><h3>Precision accuracy</h3><p>Working with small samples requires exceptional precision. Our systems deliver sub-microliter accuracy, enabling research with minimal sample volumes.</p></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="index.html"><b>BIOROBOTIX</b><span>RESEARCH AUTOMATION</span></a>
+    <p>&copy; 2026 BioRobotix. Advancing scientific discovery through automation.</p>
+  </div>
+</footer>
+
+<script>
+/* Clips play while on screen. */
+(function(){
+  var vids = document.querySelectorAll('.clip video');
+  if(!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting) e.target.play().catch(function(){}); else e.target.pause(); });
+  }, {threshold:.35});
+  vids.forEach(function(v){ io.observe(v); });
+})();
+
+/* The bench animation plays its whole run on a loop while it is on screen, and holds still off screen. */
+(function(){
+  var f = document.querySelector('.bench iframe');
+  if(!f) return;
+  var ready = false, visible = false;
+  function post(m){ if(f.contentWindow) f.contentWindow.postMessage(m, '*'); }
+  window.addEventListener('message', function(e){
+    if(e.source !== f.contentWindow || !e.data) return;
+    if(e.data.twinH){ f.style.height = Math.max(280, Math.min(700, e.data.twinH)) + 'px'; return; }   /* the frame fits the figure */
+    if(e.data.twinReady){ ready = true; post({twinHold: visible ? 0 : 1}); if(visible) post({twinRun:1}); }
+  });
+  new IntersectionObserver(function(es){
+    visible = es[0].isIntersecting;
+    if(ready){ post({twinHold: visible ? 0 : 1}); if(visible) post({twinRun:1}); }
+  }, {threshold:.2}).observe(f);
+  /* twinRun does nothing mid-run and starts over once the run has finished */
+  setInterval(function(){ if(ready && visible) post({twinRun:1}); }, 1500);
+  f.addEventListener('load', function(){ post({twinPing:1}); });
+})();
+</script>
+</body>
+</html>
