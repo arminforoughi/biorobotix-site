@@ -1,7 +1,7 @@
 {
   "hosting": {
     "public": ".",
-    "ignore": [".git", ".git/**", ".gitignore", ".DS_Store", "firebase.json", ".firebaserc", "CNAME", "**/.*", "**/node_modules/**"],
+    "ignore": [".git", ".git/**", ".gitignore", ".DS_Store", "firebase.json", ".firebaserc", "**/.*", "**/node_modules/**"],
     "cleanUrls": false,
     "headers": [
       { "source": "**/*.@(mp4|jpg|png|svg|ico)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
